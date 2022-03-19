@@ -73,3 +73,55 @@ def restoreBinaryTree(inorder, preorder):
     t.left = restoreBinaryTree(left, preorder[:len(left)])
     t.right = restoreBinaryTree(right, preorder[len(left):])
     return t
+
+def deleteFromBST(t, queries):
+    # def findMax(t):
+    #     while t.right: t = t.right
+    #     return t.value
+    
+    # def remove(t, v):
+    #     if not t: return t
+    #     elif v < t.value:
+    #         t.left = remove(t.left, v)
+    #     elif v > t.value:
+    #         t.right = remove(t.right, v)
+    #     else:
+    #         if t.left:
+    #             t.value = findMax(t.left)
+    #             t.left = remove(t.left, t.value)
+    #         else:
+    #             t = t.right
+    #     return t
+            
+    # for q in queries:
+    #     t = remove(t, q)
+    # return t    
+        def max_of_tree(t):
+            while t.right: t = t.right
+        return t.value
+
+    def remove_right(t):
+        if t.right is None:
+            return(t.left)
+        else:
+            t.right = remove_right(t.right)
+        return(t)
+
+    def f1(t, q):
+        if t is None: return(None)
+        if q == t.value:
+            if t.left:
+                t.value = max_of_tree(t.left)
+                t.left = remove_right(t.left)
+            else:
+                t = t.right
+        elif q < t.value:
+            t.left = f1(t.left, q)
+        elif q > t.value:
+            t.right = f1(t.right, q)
+        return(t)
+
+    for q in queries:
+        t = f1(t, q)
+
+    return(t)

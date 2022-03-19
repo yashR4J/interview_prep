@@ -13,8 +13,8 @@
 #     file = load(open("sample.json"))
 #     print(file)
 # except FileNotFoundError:
-#     jsonDump = {"country_of_origin": "India", 
-#                 "country_of_citizenship": "Australia", 
+#     jsonDump = {"country_of_origin": "India",
+#                 "country_of_citizenship": "Australia",
 #                 "country_of_residence": "Australia"}
 #     with open('sample.json', 'w') as file:
 #         dump(jsonDump, file)
@@ -55,7 +55,7 @@ with open('employeeBirthday.csv', 'r') as employee_file:
     #         print(f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
     #     line_count += 1
     # print(f'Processed {line_count} lines.')
-    
+
     csv_reader = csv.DictReader(employee_file)
     line_count = 0
     for row in csv_reader:

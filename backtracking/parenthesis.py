@@ -6,7 +6,6 @@ def generateParenthesis(n: int) -> List[str]:
         if l == r == 0: # all brackets have been added
             ret.append(p)
             return
-        
         # add another opening bracket
         if l > 0: helper(l-1, r, p+'(')
         # add closing brackets if valid
