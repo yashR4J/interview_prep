@@ -8,4 +8,7 @@ if __name__ == '__main__':
     ans = []
 
     for i in range(len(test_cases)):
-        assert name(test_cases[i]) == ans[i]
+        try:
+            assert name(test_cases[i]) == ans[i]
+        except AssertionError:
+            print(f"Error: Test {i}, Output is {name(test_cases[i])}")
