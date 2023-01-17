@@ -181,7 +181,25 @@ def test3():
     assert len(graph.longestPath(v1)) == 7
     assert sorted(graph.longestPath(v1)) == [2, 3, 4, 5, 6, 7, 8]
 
+def test4():
+    graph = Graph()  
+    v1 = Vertex(1,YELLOW)
+    v2 = Vertex(2,RED)
+    v3 = Vertex(3,YELLOW)
+    v4 = Vertex(4,YELLOW)
+    v5 = Vertex(5,YELLOW)
+    v6 = Vertex(6,YELLOW)
+    graph.addVertices([v1,v2,v3,v4,v5,v6])
+    graph.addEdge(v1, v2)
+    graph.addEdge(v2, v3)
+    graph.addEdge(v3, v4)
+    graph.addEdge(v1, v5)
+    graph.addEdge(v5, v6)
+    assert len(graph.longestPath(v1)) == 3
+    assert sorted(graph.longestPath(v1)) == [1, 5, 6]
+        
 if __name__ == "__main__":
     test1()
     test2()
     test3()
+    test4()

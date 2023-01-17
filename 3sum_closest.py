@@ -1,7 +1,6 @@
-from http.client import CONTINUE
 from typing import List
 
-def threeSumClosest(nums: List[int], target:int) -> int:
+def threeSumClosest(nums: List[int], target:int) -> int:    
     nums.sort()
     ret = None
     for i in range(len(nums) - 2): # leave two elements at the end

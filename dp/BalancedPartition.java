@@ -1,12 +1,18 @@
 public class BalancedPartition {
-    public static int findBalancePartition(int[] a){
+    public static boolean findBalancePartition(int[] a){
         // Calculate the sum
         int sum = 0;
         for (int i = 0; i < a.length; i++)
             sum += a[i];
         
+        if (sum % 2 == 1) {
+            return false;
+        }
+
+        sum /= 2;
+
         // leave extra row and column for empty subset and sum == 0
-        boolean dp[][] = new boolean[a.length + 1][sum + 1];
+        boolean dp[][] = new boolean[a.length + 1][sum];
 
         // all elements can form an empty set
         for (int i = 0; i <= a.length; i++)
@@ -28,23 +34,25 @@ public class BalancedPartition {
             }
         }
 
-        int diff = Integer.MAX_VALUE;
-        for (int x = sum/2; x >= 0; x--) {
-            if (dp[a.length][x] == true) {
-                diff = (sum - x) - x;
-                break;
-            }
-        }
+        return dp[a.length][sum];
+        // int diff = Integer.MAX_VALUE;
+        // for (int x = sum/2; x >= 0; x--) {
+        //     if (dp[a.length][x] == true) {
+        //         diff = (sum - x) - x;
+        //         break;
+        //     }
+        // }
 
-        return diff;
+        // return diff;
     }
 
     public static void main(String[] args) {
         int[] a = new int[]{1, 4, 6, 10};
-        assert BalancedPartition.findBalancePartition(a) == 1;
+        assert BalancedPartition.findBalancePartition(a) == false;
         a = new int[]{9,4,2,3,4};
-        assert BalancedPartition.findBalancePartition(a) == 0;
+        assert BalancedPartition.findBalancePartition(a) == true;
         a = new int[]{100,200,300,400,200,300,400,500};
-        assert BalancedPartition.findBalancePartition(a) == 0;
+        assert BalancedPartition.findBalancePartition(a) == true;
+        System.out.println("SUCCESS");
     }
 }
